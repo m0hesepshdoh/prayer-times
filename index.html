@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prayer Times - Alharamain Mosque</title>
+    <meta name="description" content="Prayer times at our Alharamain Mosque">
+    <meta name="keywords" content="prayer times, mosque, Alharamain, Islamic, prayer schedule">
+    <meta name="author" content="mohammed yousef bafuleh, محمد يوسف بافليح">
+    <link rel="icon" href="#" type="image/x-icon" alt="Alharamain Mosque Icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-mosque"></i> Prayer Times</h1>
+            <p id="current-date">Loading date...</p>
+            <p id="hijri-date">Loading Hijri date...</p>
+        </header>
+
+        <div class="next-prayer">
+            Next prayer: <span id="next-prayer-name">Loading...</span> at <span id="next-prayer-time">--:--</span>
+        </div>
+
+        <div class="prayer-times-table">
+            <div class="table-header">
+                <div class="table-cell">Prayer</div>
+                <div class="table-cell">Time</div>
+            </div>
+            <div class="table-row" id="fajr-row">
+                <div class="table-cell">Fajr</div>
+                <div class="table-cell" id="fajr-time">--:--</div>
+            </div>
+            <div class="table-row" id="sunrise-row">
+                <div class="table-cell">Sunrise</div>
+                <div class="table-cell" id="sunrise-time">--:--</div>
+            </div>
+            <div class="table-row" id="dhuhr-row">
+                <div class="table-cell" id="dhuhr-label">Dhuhr</div>
+                <div class="table-cell" id="dhuhr-time">--:--</div>
+            </div>
+            <div class="table-row" id="asr-row">
+                <div class="table-cell">Asr</div>
+                <div class="table-cell" id="asr-time">--:--</div>
+            </div>
+            <div class="table-row" id="maghrib-row">
+                <div class="table-cell">Maghrib</div>
+                <div class="table-cell" id="maghrib-time">--:--</div>
+            </div>
+            <div class="table-row" id="isha-row">
+                <div class="table-cell">Isha</div>
+                <div class="table-cell" id="isha-time">--:--</div>
+            </div>
+        </div>
+
+        <div class="additional-info">
+            <p><i class="fas fa-info-circle"></i> Times are updated daily by mosque administration</p>
+            <p><i class="fas fa-clock"></i> <span id="last-updated">Last updated: --/--/----</span></p>
+        </div>
+
+        <div id="notification-status" class="notification-status notification-disabled">
+            Notifications: Disabled
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
