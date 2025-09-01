@@ -148,6 +148,39 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
+    min-height: 200px; /* Ensure consistent height */
+}
+
+.Khutbah-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    min-height: 2.5rem; /* Fixed height for title */
+}
+
+.Khutbah-card h3 {
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+    font-size: 1.6rem;
+    min-height: 2rem; /* Fixed height for topic */
+}
+
+.Khutbah-card h4 {
+    font-size: 1.4rem;
+    font-weight: normal;
+    line-height: 1.5;
+    flex: 1;
+    overflow: auto; /* Allow scrolling if content is long */
+    margin-bottom: 1rem;
+    min-height: 4rem; /* Minimum height for summary */
+}
+
+.Khutbah-card h5 {
+    opacity: 0.9;
+    font-size: 1.6rem;
+    min-height: 2rem; /* Fixed height for speaker */
 }
 
 .notice {
@@ -164,6 +197,10 @@ body {
     flex: 2;
     display: flex;
     flex-direction: column;
+}
+
+.news-item-input {
+    margin-bottom: 10px;
 }
 
 .sidebar-card h2 {
@@ -331,6 +368,31 @@ body {
     font-size: 1.5rem;
 }
 
+/* QR Code Section */
+.qr-section {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.qr-title {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: var(--gold);
+}
+
+.qr-code {
+    max-width: 150px;
+    margin: 0 auto 1rem;
+}
+
+.qr-description {
+    font-size: 1.4rem;
+    color: var(--muted);
+}
+
 /* Footer */
 .footer {
     background: var(--dark-green);
@@ -343,4 +405,8 @@ body {
 .footer-text {
     font-size: 0.8rem;
     color: var(--muted);
+}
+
+.hidden {
+    display: none !important;
 }
