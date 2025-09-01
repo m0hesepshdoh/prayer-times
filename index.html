@@ -2,74 +2,179 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prayer Times - Alharamain Mosque</title>
-    <meta name="description" content="Prayer times at our Alharamain Mosque">
-    <meta name="keywords" content="prayer times, mosque, Alharamain, Islamic, prayer schedule">
-    <meta name="author" content="mohammed yousef bafuleh, محمد يوسف بافليح">
-    <link rel="icon" href="#" type="image/x-icon" alt="Alharamain Mosque Icon">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <title>Al-Haramin Masjid</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
     <div class="container">
-        <header>
-            <h1><i class="fas fa-mosque"></i> Prayer Times</h1>
-            <p id="current-date">Loading date...</p>
-            <p id="hijri-date">Loading Hijri date...</p>
+        <!-- Header -->
+        <header class="header">
+            <div class="brand">
+                <div class="logo"></div>
+                <div class="brand-text">
+                    <div class="brand-line1">Al-Haramin Masjid</div>
+                </div>
+            </div>
+
+            <div class="clock-container">
+                <div class="clock">
+                    <span class="time">11:47:13</span>
+                    <span class="day-display">Saturday</span>
+                </div>
+            </div>
+
+            <div class="date">
+                <div class="gregorian">16 Apr 2022</div>
+                <div class="hijri">15 Ramadān 1443</div>
+            </div>
         </header>
 
-        <div class="next-prayer">
-            Next prayer: <span id="next-prayer-name">Loading...</span> at <span id="next-prayer-time">--:--</span>
-        </div>
+        <!-- Main content -->
+        <main class="main">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-card Khutbah-card">
+                    <h2 class="title"><i class="fas fa-microphone"></i>Next/Now/today's/last Khutbah</h2>
+                    <h3>The Importance of Community</h3>
+                    <h4 class="in-short">In these challenging times, building a strong Muslim community is more
+                        important than ever. We
+                        must support each other, share knowledge, and work together to strengthen our faith and serve
+                        Allah SWT.</h4>
+                    <h5 class="speaker">Imam Ahmed Hassan</h5>
+                </div>
+                <!-- News section moved to sidebar -->
+                <div class="sidebar-card news-card">
+                    <div class="news-title"><i class="fas fa-newspaper"></i>News of the Week</div>
+                    <div class="news-content">
+                        <div class="news-item">
+                            Community Iftar will be held this Saturday after Maghrib prayer
+                        </div>
+                        <div class="news-item">
+                            Quran classes for children will resume next week
+                        </div>
+                        <div class="news-item">
+                            Donation drive for Syria earthquake victims continues
+                        </div>
+                        <div class="news-item">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione quasi ut quod adipisci
+                            nihil! Nemo odio maxime illo eum consectetur nostrum, consequuntur recusandae dolor ratione
+                            cumque placeat adipisci veritatis corrupti? </div>
+                        <div class="news-item">
+                            New library section with Islamic books now open
+                        </div>
+                        <div class="news-item">
+                            New library section with Islamic books now open
+                        </div>
+                        <div class="news-item">
+                            New library section with Islamic books now open
+                        </div>
+                    </div>
+                </div>
 
-        <div class="prayer-times-table">
-            <div class="table-header">
-                <div class="table-cell">Prayer</div>
-                <div class="table-cell">Time</div>
-            </div>
-            <div class="table-row" id="fajr-row">
-                <div class="table-cell">Fajr</div>
-                <div class="table-cell" id="fajr-time">--:--</div>
-            </div>
-            <div class="table-row" id="sunrise-row">
-                <div class="table-cell">Sunrise</div>
-                <div class="table-cell" id="sunrise-time">--:--</div>
-            </div>
-            <div class="table-row" id="dhuhr-row">
-                <div class="table-cell" id="dhuhr-label">Dhuhr</div>
-                <div class="table-cell" id="dhuhr-time">--:--</div>
-            </div>
-            <div class="table-row" id="asr-row">
-                <div class="table-cell">Asr</div>
-                <div class="table-cell" id="asr-time">--:--</div>
-            </div>
-            <div class="table-row" id="maghrib-row">
-                <div class="table-cell">Maghrib</div>
-                <div class="table-cell" id="maghrib-time">--:--</div>
-            </div>
-            <div class="table-row" id="isha-row">
-                <div class="table-cell">Isha</div>
-                <div class="table-cell" id="isha-time">--:--</div>
-            </div>
-        </div>
+                <div class="sidebar-card notice">
+                    <p><i class="fas fa-volume-mute"></i> Please Switch Off your Mobile Phones</p>
+                </div>
+            </aside>
 
-        <div class="additional-info">
-            <p><i class="fas fa-info-circle"></i> Times are updated daily by mosque administration</p>
-            <p><i class="fas fa-clock"></i> <span id="last-updated">Last updated: --/--/----</span></p>
-        </div>
+            <!-- Prayer times -->
+            <section class="prayer-times">
+                <div class="prayer-header">
+                    <div>Prayer</div>
+                    <div>Begins</div>
+                    <div>Jamaat</div>
+                </div>
 
-        <div id="notification-status" class="notification-status notification-disabled">
-            Notifications: Disabled
-        </div>
+                <div class="prayer-rows">
+                    <div class="prayer-row">
+                        <div class="prayer-name">
+                            <span class="prayer-icon"><i class="fas fa-sun"></i></span>
+                            Fajr
+                        </div>
+                        <div class="prayer-begins">4:28 AM</div>
+                        <div class="prayer-jamaat">4:45 AM</div>
+                    </div>
+
+                    <div class="prayer-row">
+                        <div class="prayer-name">
+                            <span class="prayer-icon"><i class="fas fa-sun"></i></span>
+                            Dhuhr
+                        </div>
+                        <div class="prayer-begins">1:05 PM</div>
+                        <div class="prayer-jamaat">1:30 PM</div>
+                    </div>
+
+                    <div class="prayer-row">
+                        <div class="prayer-name">
+                            <span class="prayer-icon"><i class="fas fa-sun"></i></span>
+                            Asr
+                        </div>
+                        <div class="prayer-begins">4:50 PM</div>
+                        <div class="prayer-jamaat">6:00 PM</div>
+                    </div>
+
+                    <div class="prayer-row">
+                        <div class="prayer-name">
+                            <span class="prayer-icon"><i class="fas fa-moon"></i></span>
+                            Maghrib
+                        </div>
+                        <div class="prayer-begins">8:02 PM</div>
+                        <div class="prayer-jamaat">8:02 PM</div>
+                    </div>
+
+                    <div class="prayer-row">
+                        <div class="prayer-name">
+                            <span class="prayer-icon"><i class="fas fa-moon"></i></span>
+                            Isha
+                        </div>
+                        <div class="prayer-begins">9:17 PM</div>
+                        <div class="prayer-jamaat">9:45 PM</div>
+                    </div>
+                </div>
+
+                <!-- Additional prayers section -->
+                <div class="additional-prayers">
+                    <div class="additional-prayer-row">
+                        <div class="additional-prayer-name">
+                            <i class="fas fa-sun"></i> Ishraq
+                        </div>
+                        <div class="additional-prayer-time">1:30 PM</div>
+                    </div>
+
+                    <div class="additional-prayer-row">
+                        <div class="additional-prayer-name">
+                            <i class="fas fa-moon"></i> Taraweeh
+                        </div>
+                        <div class="additional-prayer-time">9:50 PM</div>
+                    </div>
+
+                    <div class="additional-prayer-row">
+                        <div class="additional-prayer-name">
+                            <i class="fas fa-star"></i> Tahajjud
+                        </div>
+                        <div class="additional-prayer-time">2:30 AM</div>
+                    </div>
+                    <div class="additional-prayer-row">
+                        <div class="additional-prayer-name">
+                            <i class="fas fa-star"></i> Jumu'ah
+                        </div>
+                        <div class="additional-prayer-time">12:15 PM</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-text">
+                Al-Haramin Masjid | Ongoing Charity For Bafuleh Family.
+            </div>
+        </footer>
     </div>
-    <script src="script.js"></script>
+    <script>src = "script.js"</script>
 </body>
 
 </html>
