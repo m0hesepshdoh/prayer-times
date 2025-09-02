@@ -437,14 +437,14 @@ body {
 /* Footer */
 .footer {
     background: var(--dark-green);
-    padding: 1.2vh;
+    padding: 0.5vh;
     border-top: 0.2vh solid var(--gold);
     text-align: center;
     flex-shrink: 0;
 }
 
 .footer-text {
-    font-size: 1.6vh;
+    font-size: 0.1vh;
     /* Responsive font size */
     color: var(--muted);
 }
