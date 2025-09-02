@@ -199,7 +199,6 @@ function fetchData() {
 
                             prayerRow.innerHTML = `
                                 <div class="additional-prayer-name">
-                                    <i class="fas fa-moon"></i>
                                     <span>${prayer.name}</span>
                                 </div>
                                 <div class="additional-prayer-time">${time12Hour}</div>
