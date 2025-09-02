@@ -65,6 +65,7 @@ body {
 .logo {
     width: 8vh;
     height: 8vh;
+    object-fit: contain;
     display: flex;
     justify-content: center;
     align-items: center;
