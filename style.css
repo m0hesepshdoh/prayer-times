@@ -154,55 +154,48 @@ body {
     /* Allow cards to shrink */
 }
 
+/* Enhanced Khutbah card styling */
 .Khutbah-card {
     background: linear-gradient(135deg, var(--gold), #b8792f);
     color: var(--white);
     flex: 1;
     display: flex;
     flex-direction: column;
-    min-height: 15vh;
-    /* Minimum height */
+    min-height: 20vh;
+    padding: 2vh 1.5vw; /* Slightly increased padding */
 }
 
 .Khutbah-card h2 {
-    font-size: 1.8vh;
-    /* Responsive font size */
-    margin-bottom: 1vh;
+    font-size: 2.2vh; /* Increased from 1.8vh */
+    margin-bottom: 1.5vh; /* Added more space below title */
     display: flex;
     align-items: center;
     gap: 0.8vw;
     min-height: 2.5vh;
-    /* Fixed height for title */
 }
 
 .Khutbah-card h3 {
-    margin-bottom: 0.8vh;
+    margin-bottom: 1.2vh; /* Increased from 0.8vh */
     font-weight: 700;
-    font-size: 1.6vh;
-    /* Responsive font size */
+    font-size: 2vh; /* Increased from 1.6vh */
     min-height: 2vh;
-    /* Fixed height for topic */
 }
 
 .Khutbah-card h4 {
-    font-size: 1.4vh;
-    /* Responsive font size */
+    font-size: 1.7vh; /* Increased from 1.4vh */
     font-weight: normal;
-    line-height: 1.5;
+    line-height: 1.6; /* Increased from 1.5 */
     flex: 1;
     overflow: auto;
-    /* Allow scrolling if content is long */
-    margin-bottom: 1vh;
+    margin-bottom: 1.5vh; /* Increased from 1vh */
     min-height: 4vh;
-    /* Minimum height for summary */
 }
 
 .Khutbah-card h5 {
     opacity: 0.9;
-    font-size: 1.6vh;
-    /* Responsive font size */
+    font-size: 1.8vh; /* Increased from 1.6vh */
     min-height: 2vh;
-    /* Fixed height for speaker */
+    margin-top: 1.5vh; /* Added space above speaker */
 }
 
 .notice {
@@ -437,16 +430,16 @@ body {
 /* Footer */
 .footer {
     background: var(--dark-green);
-    padding: 0.5vh;
+    padding: 0.2vh;
     border-top: 0.2vh solid var(--gold);
     text-align: center;
     flex-shrink: 0;
 }
 
 .footer-text {
-    font-size: 0.1vh;
+    font-size: 0.9vh;
     /* Responsive font size */
-    color: var(--muted);
+    color: #3c763c;
 }
 
 .hidden {
