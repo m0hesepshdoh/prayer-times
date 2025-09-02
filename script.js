@@ -28,9 +28,6 @@ const prayerTimeElements = {
         begins: document.getElementById('fajr-begins'),
         jamaat: document.getElementById('fajr-jamaat')
     },
-    sunrise: {
-        begins: document.getElementById('sunrise-begins')
-    },
     dhuhr: {
         begins: document.getElementById('dhuhr-begins'),
         jamaat: document.getElementById('dhuhr-jamaat')
