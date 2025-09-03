@@ -222,7 +222,8 @@ function fetchData() {
                     if (data.qrcode.enabled) {
                         qrcodeCard.classList.remove('hidden');
                         if (data.qrcode.url) {
-                            qrcodeImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(url)}`;
+                            qrcodeImage.src = `if (data.qrcode.url) {
+    qrcodeImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(data.qrcode.url)}`;
                         }
                         if (data.qrcode.description) qrcodeDescription.textContent = data.qrcode.description;
                     } else {
