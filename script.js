@@ -222,7 +222,7 @@ function fetchData() {
                     if (data.qrcode.enabled) {
                         qrcodeCard.classList.remove('hidden');
                         if (data.qrcode.url) {
-                            qrcodeImage.src = `https://chart.googleapis.com/chart?chs=150x150&cht=qr&chl=${encodeURIComponent(data.qrcode.url)}&choe=UTF-8`;
+                            qrcodeImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(url)}`;
                         }
                         if (data.qrcode.description) qrcodeDescription.textContent = data.qrcode.description;
                     } else {
