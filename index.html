@@ -8,7 +8,515 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --black: #0a0a0a;
+            --green: #1f5a45;
+            --gold: #9b6a27;
+            --red: #b32825;
+            --white: #ffffff;
+            --muted: #cbd5e1;
+            --light-green: rgba(31, 90, 69, 0.2);
+            --dark-green: #164033;
+            --sidebar-bg: #f8f9fa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            overflow: hidden;
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            background: var(--black);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--white);
+            line-height: 1.6;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-size: 1.2vw;
+            /* Responsive base font size */
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Header */
+        .header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+            padding: 1vh 1.5vw;
+            background: linear-gradient(135deg, var(--green), var(--dark-green), var(--black));
+            border-bottom: 0.3vh solid var(--gold);
+            flex-shrink: 0;
+            min-height: 12vh;
+            /* Minimum header height */
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 1.5vw;
+        }
+
+        .logo {
+            width: 8vh;
+            height: 8vh;
+            object-fit: contain;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+        }
+
+        .brand-text {
+            line-height: 1.3;
+        }
+
+        .brand-line1 {
+            font-weight: 700;
+            color: var(--white);
+            font-size: 3.2vh;
+            /* Responsive font size */
+        }
+
+        .clock-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clock {
+            font-size: 4.2vh;
+            /* Responsive font size */
+            font-weight: 800;
+            color: var(--white);
+            text-shadow: 0.3vh 0.3vh 0.6vh rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 1vw;
+        }
+
+        .day-display {
+            font-size: 2.2vh;
+            /* Responsive font size */
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .date {
+            text-align: right;
+        }
+
+        .gregorian {
+            font-size: 1.8vh;
+            /* Responsive font size */
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .hijri {
+            font-size: 1.5vh;
+            /* Responsive font size */
+            color: var(--muted);
+        }
+
+        /* Main content */
+        .main {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 35% 65%;
+            overflow: hidden;
+            height: calc(100vh - 12vh);
+            /* Adjust based on header height */
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--sidebar-bg);
+            color: var(--black);
+            padding: 1.5vh 1.5vw;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5vh;
+            overflow: hidden;
+        }
+
+        /* Enhanced sidebar cards */
+        .sidebar-card {
+            border-radius: 2vh;
+            padding: 1.5vh 1.5vw;
+            flex-shrink: 1;
+            min-height: 0;
+            /* Allow cards to shrink */
+        }
+
+        /* Enhanced Khutbah card styling */
+        .Khutbah-card {
+            background: linear-gradient(135deg, var(--gold), #b8792f);
+            color: var(--white);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 20vh;
+            padding: 2vh 1.5vw;
+            /* Slightly increased padding */
+        }
+
+        .Khutbah-card h2 {
+            font-size: 2.2vh;
+            /* Increased from 1.8vh */
+            margin-bottom: 1.5vh;
+            /* Added more space below title */
+            display: flex;
+            align-items: center;
+            gap: 0.8vw;
+            min-height: 2.5vh;
+        }
+
+        .Khutbah-card h3 {
+            margin-bottom: 1.2vh;
+            /* Increased from 0.8vh */
+            font-weight: 700;
+            font-size: 2vh;
+            /* Increased from 1.6vh */
+            min-height: 2vh;
+        }
+
+        .Khutbah-card h4 {
+            font-size: 1.7vh;
+            /* Increased from 1.4vh */
+            font-weight: normal;
+            line-height: 1.6;
+            /* Increased from 1.5 */
+            flex: 1;
+            overflow: auto;
+            margin-bottom: 1.5vh;
+            /* Increased from 1vh */
+            min-height: 4vh;
+        }
+
+        .Khutbah-card h5 {
+            opacity: 0.9;
+            font-size: 1.8vh;
+            /* Increased from 1.6vh */
+            min-height: 2vh;
+            margin-top: 1.5vh;
+            /* Added space above speaker */
+        }
+
+        .notice {
+            background: linear-gradient(135deg, var(--red), #c93a37);
+            color: var(--white);
+            font-size: 1.6vh;
+            /* Responsive font size */
+            text-align: center;
+            padding: 1.2vh;
+        }
+
+        .news-card {
+            background: var(--white);
+            color: var(--black);
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            /* Allow card to shrink */
+        }
+
+        .news-item-input {
+            margin-bottom: 1vh;
+        }
+
+        .sidebar-card h2 {
+            font-size: 7vh;
+            font-weight: 800;
+            /* Responsive font size */
+            margin-bottom: 1vh;
+            display: flex;
+            align-items: center;
+            gap: 0.8vw;
+        }
+
+        .sidebar-card h3 {
+            margin-bottom: 0.8vh;
+            font-weight: 700;
+            font-size: 4vh;
+            /* Responsive font size */
+        }
+
+        .sidebar-card h4 {
+            font-size: 3vh;
+            /* Responsive font size */
+            font-weight: normal;
+            line-height: 1.5;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .speaker {
+            font-size: 1.6vh;
+            /* Responsive font size */
+            margin-top: 90vh;
+        }
+
+        /* News section in sidebar */
+        .news-title {
+            color: var(--green);
+            font-size: 5vh;
+            font-weight: 800;
+            /* Responsive font size */
+            margin-bottom: 1.2vh;
+            display: flex;
+            align-items: center;
+            gap: 0.8vw;
+        }
+
+        .news-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1vh;
+            flex: 1;
+            overflow: auto;
+            /* Allow scrolling if needed */
+        }
+
+        .news-item {
+            padding: 1vh;
+            background: rgba(31, 90, 69, 0.08);
+            border-radius: 0.8vh;
+            transition: background-color 0.3s ease;
+            font-size: 4vh;
+            /* Responsive font size */
+        }
+
+        /* Prayer times */
+        .prayer-times {
+            background: linear-gradient(135deg, var(--green), var(--dark-green));
+            padding: 1.5vh 1.5vw;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .prayer-header {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            padding-bottom: 1.2vh;
+            margin-bottom: 1.2vh;
+            border-bottom: 0.2vh solid rgba(255, 255, 255, 0.2);
+            font-weight: 700;
+            font-size: 1.8vh;
+            /* Responsive font size */
+            flex-shrink: 0;
+        }
+
+        .prayer-header div {
+            text-align: center;
+        }
+
+        .prayer-header div:first-child {
+            text-align: left;
+        }
+
+        .prayer-header div:last-child {
+            text-align: right;
+        }
+
+        .prayer-rows {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            overflow: hidden;
+        }
+
+        .prayer-row {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            padding: 1.2vh 0;
+            align-items: center;
+            transition: background-color 0.3s ease;
+            flex-shrink: 0;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(155, 106, 39, 0.1));
+            border-radius: 2vh;
+            margin: 0.2vh 0;
+        }
+
+        .prayer-name {
+            font-size: 3vh;
+            /* Responsive font size */
+            display: flex;
+            align-items: center;
+            gap: 1vw;
+        }
+
+        .prayer-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Responsive font size */
+        }
+
+        .prayer-begins {
+            text-align: center;
+            font-size: 3.7vh;
+            /* Responsive font size */
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .prayer-jamaat {
+            text-align: right;
+            font-size: 3.7vh;
+            /* Responsive font size */
+            color: var(--white);
+        }
+
+        /* Additional prayers section - now side by side */
+        .additional-prayers {
+            margin-top: 1.5vh;
+            padding-top: 1.5vh;
+            border-top: 0.3vh dashed rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1vh;
+        }
+
+        .additional-prayer-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 1vh;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+            background: #ffffff1a;
+            border-radius: 0.8vh;
+        }
+
+        .additional-prayer-name {
+            font-size: 1.5vh;
+            /* Responsive font size */
+            display: flex;
+            align-items: center;
+            gap: 0.8vw;
+        }
+
+        .additional-prayer-time {
+            font-size: 1.5vh;
+            /* Responsive font size */
+        }
+
+        /* QR Code Container */
+        #qrcode-card {
+            background: var(--white);
+            color: var(--black);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            /* Allow card to shrink */
+        }
+
+        .qr-container {
+            display: flex;
+            align-items: center;
+            gap: 0.1vw;
+            height: 100%;
+        }
+
+        /* QR Image Container */
+        .qr-image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .payment-method {
+            max-width: 15vh;
+            margin-bottom: 0.5vh;
+        }
+
+        #qrcode-image {
+            max-width: 12vh;
+            max-height: 12vh;
+        }
+
+        .qr-text-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding-top: 0.5vh;
+        }
+
+        .qr-description {
+            font-size: 4.5vh;
+            color: var(--gold);
+            line-height: 1.4;
+            word-wrap: break-word;
+            max-height: 100%;
+            overflow: auto;
+            text-align: left;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-green);
+            padding: 0.2vh;
+            border-top: 0.2vh solid var(--gold);
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .footer-text {
+            font-size: 0.9vh;
+            /* Responsive font size */
+            color: #3c763c;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Prevent text overflow */
+        .prayer-name,
+        .prayer-begins,
+        .prayer-jamaat,
+        .brand-line1,
+        .clock,
+        .date,
+        .Khutbah-card h2,
+        .Khutbah-card h3,
+        .Khutbah-card h4,
+        .Khutbah-card h5 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Allow text wrapping in specific elements */
+        .Khutbah-card h4,
+        .news-item {
+            white-space: normal;
+            word-wrap: break-word;
+        }
+    </style>
 </head>
 
 <body>
@@ -140,5 +648,331 @@
     </div>
     <script src="/script.js"></script>
 </body>
+<script>
+    // Firebase configuration
+    const firebaseConfig = {
+        apiKey: 'AIzaSyA0wcgv_6dH14g37F6fdqXv1A97amw23_w',
+        authDomain: 'birthdaymessagesapp.firebaseapp.com',
+        projectId: 'birthdaymessagesapp',
+        storageBucket: 'birthdaymessagesapp.firebasestorage.app',
+        messagingSenderId: '220266164498',
+        appId: '1:220266164498:web:2adcb2520b75f580cd83cb'
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Add these variables to track Khutbah information
+    let currentKhutbahData = null;
+    let lastKhutbahData = null;
+
+    // DOM elements
+    const timeElement = document.querySelector('.time');
+    const dayDisplayElement = document.querySelector('.day-display');
+    const gregorianDateElement = document.querySelector('.gregorian');
+    const hijriDateElement = document.querySelector('.hijri');
+
+    // Prayer time elements
+    const prayerTimeElements = {
+        fajr: {
+            begins: document.getElementById('fajr-begins'),
+            jamaat: document.getElementById('fajr-jamaat')
+        },
+        dhuhr: {
+            begins: document.getElementById('dhuhr-begins'),
+            jamaat: document.getElementById('dhuhr-jamaat')
+        },
+        asr: {
+            begins: document.getElementById('asr-begins'),
+            jamaat: document.getElementById('asr-jamaat')
+        },
+        maghrib: {
+            begins: document.getElementById('maghrib-begins'),
+            jamaat: document.getElementById('maghrib-jamaat')
+        },
+        isha: {
+            begins: document.getElementById('isha-begins'),
+            jamaat: document.getElementById('isha-jamaat')
+        }
+    };
+
+    // Khutbah elements
+    const khutbahCard = document.getElementById('khutbah-card');
+    const khutbahTitle = document.getElementById('khutbah-title');
+    const khutbahSummary = document.getElementById('khutbah-summary');
+    const khutbahSpeaker = document.getElementById('khutbah-speaker');
+
+    // QR code elements
+    const qrcodeCard = document.getElementById('qrcode-card');
+    const qrcodeImage = document.getElementById('qrcode-image');
+    const qrcodeDescription = document.getElementById('qrcode-description');
+
+    // News elements
+    const newsItems = document.querySelectorAll('.news-item');
+
+    // Additional prayers container
+    const additionalPrayersSection = document.getElementById('additional-prayers-section');
+
+    // Update clock function
+    function updateClock() {
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+
+        // Convert to 12-hour format
+        hours = hours % 12;
+        hours = hours ? hours : 12; // The hour '0' should be '12'
+        hours = hours.toString().padStart(2, '0');
+
+        timeElement.textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
+
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        dayDisplayElement.textContent = days[now.getDay()];
+
+        // Update date
+        const options = { day: 'numeric', month: 'short', year: 'numeric' };
+        gregorianDateElement.textContent = now.toLocaleDateString('en-US', options);
+    }
+
+    // convert 24-hour time to 12-hour
+    function convertTo12HourFormat(time24) {
+        if (!time24 || time24 === '-') return '-';
+
+        const [hours, minutes] = time24.split(':');
+        let h = parseInt(hours);
+        const ampm = h >= 12 ? 'PM' : 'AM';
+
+        h = h % 12;
+        h = h ? h : 12; // The hour '0' should be '12'
+
+        return `${h.toString().padStart(2, '0')}:${minutes} ${ampm}`;
+    }
+
+    // Update Hijri date based on stored data
+    function updateHijriDate(hijriData) {
+        if (hijriData && hijriData.day && hijriData.month && hijriData.year) {
+            hijriDateElement.textContent = `${hijriData.day} ${hijriData.month} ${hijriData.year}`;
+        }
+    }
+
+    // Fetch data from Firestore
+    function fetchData() {
+        db.collection("mosqueSettings").doc("currentSettings").get()
+            .then(doc => {
+                if (doc.exists) {
+                    const data = doc.data();
+
+                    // Update prayer times
+                    if (data.prayerTimes) {
+                        for (const key in prayerTimeElements) {
+                            if (data.prayerTimes[key]) {
+                                if (prayerTimeElements[key].begins) {
+                                    // Convert to 12-hour format
+                                    prayerTimeElements[key].begins.textContent = convertTo12HourFormat(data.prayerTimes[key].begins);
+                                }
+
+                                // For prayers with Jamaat time
+                                if (prayerTimeElements[key].jamaat && data.prayerTimes[key].jamaat) {
+                                    // Convert to 12-hour format
+                                    prayerTimeElements[key].jamaat.textContent = convertTo12HourFormat(data.prayerTimes[key].jamaat);
+                                }
+                            }
+                        }
+                    }
+
+                    // Update hijri date
+                    if (data.hijriDate) {
+                        updateHijriDate(data.hijriDate);
+                    }
+
+                    // Store Khutbah data for comparison
+                    if (data.khutbah) {
+                        // Check if this is a new Khutbah entry
+                        if (currentKhutbahData &&
+                            (currentKhutbahData.title !== data.khutbah.title ||
+                                currentKhutbahData.speaker !== data.khutbah.speaker)) {
+                            lastKhutbahData = { ...currentKhutbahData };
+                        }
+
+                        currentKhutbahData = { ...data.khutbah };
+
+                        // Update Khutbah display based on day and time
+                        updateKhutbahDisplay(data.khutbah);
+                    }
+
+                    // Update khutbah info
+                    if (data.khutbah) {
+                        if (data.khutbah.enabled) {
+                            khutbahCard.classList.remove('hidden');
+                            if (data.khutbah.title) khutbahTitle.textContent = data.khutbah.title;
+                            if (data.khutbah.summary) khutbahSummary.textContent = data.khutbah.summary;
+                            if (data.khutbah.speaker) khutbahSpeaker.textContent = data.khutbah.speaker;
+                        } else {
+                            khutbahCard.classList.add('hidden');
+                        }
+                    }
+
+                    // Update news items
+                    if (data.news && data.news.enabled) {
+                        document.querySelector('.news-card').classList.remove('hidden');
+
+                        // Clear existing news items
+                        const newsContent = document.querySelector('.news-content');
+                        newsContent.innerHTML = '';
+
+                        // Add news items from data
+                        for (let i = 1; i <= 4; i++) {
+                            if (data.news[`item${i}`]) {
+                                const newsItem = document.createElement('div');
+                                newsItem.className = 'news-item';
+                                newsItem.textContent = data.news[`item${i}`];
+                                newsContent.appendChild(newsItem);
+                            }
+                        }
+                    } else {
+                        document.querySelector('.news-card').classList.add('hidden');
+                    }
+
+                    // Update additional prayers
+                    if (data.additionalPrayers && data.additionalPrayers.enabled && data.additionalPrayers.items) {
+                        additionalPrayersSection.innerHTML = '';
+
+                        data.additionalPrayers.items.forEach((prayer, index) => {
+                            if (prayer.name && prayer.time) {
+                                const prayerRow = document.createElement('div');
+                                prayerRow.className = 'additional-prayer-row';
+
+                                // Convert time to 12-hour format
+                                const time12Hour = convertTo12HourFormat(prayer.time);
+
+                                prayerRow.innerHTML = `
+                                <div class="additional-prayer-name">
+                                    <span>${prayer.name}</span>
+                                </div>
+                                <div class="additional-prayer-time">${time12Hour}</div>
+                            `;
+                                additionalPrayersSection.appendChild(prayerRow);
+                            }
+                        });
+
+                        // Show the section if we have items
+                        if (additionalPrayersSection.children.length > 0) {
+                            additionalPrayersSection.style.display = 'grid';
+                        } else {
+                            additionalPrayersSection.style.display = 'none';
+                        }
+                    } else {
+                        additionalPrayersSection.style.display = 'none';
+                    }
+
+                    // Update QR code info
+                    if (data.qrcode) {
+                        if (data.qrcode.enabled) {
+                            qrcodeCard.classList.remove('hidden');
+                            if (data.qrcode.url) {
+                                qrcodeImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(data.qrcode.url)}`;
+                            }
+                            if (data.qrcode.description) qrcodeDescription.textContent = data.qrcode.description;
+                        } else {
+                            qrcodeCard.classList.add('hidden');
+                        }
+                    }
+                }
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+            });
+    }
+
+    // Function to determine and update Khutbah display
+    function updateKhutbahDisplay(khutbahData) {
+        if (!khutbahData.enabled) {
+            khutbahCard.classList.add('hidden');
+            return;
+        }
+
+        const now = new Date();
+        const today = now.getDay(); // 0 = Sunday, 5 = Friday
+        const currentTime = now.getHours() * 60 + now.getMinutes(); // Time in minutes
+
+        // Get Dhuhr prayer time for comparison
+        let dhuhrTime = null;
+        if (prayerTimeElements.dhuhr.begins.textContent) {
+            const [dhuhrHours, dhuhrMinutes] = prayerTimeElements.dhuhr.begins.textContent.split(':');
+            dhuhrTime = parseInt(dhuhrHours) * 60 + parseInt(dhuhrMinutes);
+        }
+
+        // Get Jamaat time for comparison
+        let jamaatTime = null;
+        if (prayerTimeElements.dhuhr.jamaat.textContent &&
+            prayerTimeElements.dhuhr.jamaat.textContent !== '-') {
+            const [jamaatHours, jamaatMinutes] = prayerTimeElements.dhuhr.jamaat.textContent.split(':');
+            jamaatTime = parseInt(jamaatHours) * 60 + parseInt(jamaatMinutes);
+        }
+
+        // Determine which Khutbah title to display
+        let khutbahTitleText = "Next Jumu'ah Khutbah";
+
+        if (today === 5) { // Friday
+            if (dhuhrTime && jamaatTime) {
+                if (currentTime >= dhuhrTime && currentTime < jamaatTime) {
+                    khutbahTitleText = "Now's Jumu'ah Khutbah";
+                } else {
+                    khutbahTitleText = "Today's Jumu'ah Khutbah";
+                }
+            } else {
+                khutbahTitleText = "Today's Jumu'ah Khutbah";
+            }
+        } else if (lastKhutbahData &&
+            (khutbahData.title === lastKhutbahData.title &&
+                khutbahData.speaker === lastKhutbahData.speaker)) {
+            khutbahTitleText = "Last Jumu'ah Khutbah";
+        }
+
+        // Update the Khutbah title element
+        const khutbahTitleElement = document.querySelector('.Khutbah-card h2');
+        if (khutbahTitleElement) {
+            khutbahTitleElement.innerHTML = `<i class="fas fa-microphone"></i>${khutbahTitleText}`;
+        }
+
+        // Update Khutbah content
+        if (khutbahData.title) khutbahTitle.textContent = khutbahData.title;
+        if (khutbahData.summary) khutbahSummary.textContent = khutbahData.summary;
+        if (khutbahData.speaker) khutbahSpeaker.textContent = khutbahData.speaker;
+
+        khutbahCard.classList.remove('hidden');
+    }
+
+    // Update the initialization to track Khutbah data
+    document.addEventListener('DOMContentLoaded', () => {
+        // Start the clock
+        updateClock();
+        setInterval(updateClock, 1000);
+
+        // Initialize Khutbah data
+        currentKhutbahData = null;
+        lastKhutbahData = null;
+
+        // Fetch data from Firestore
+        fetchData();
+
+        // Set up real-time listener for data changes
+        db.collection("mosqueSettings").doc("currentSettings")
+            .onSnapshot(doc => {
+                if (doc.exists) {
+                    fetchData();
+                }
+            });
+
+        // Also update Khutbah display every minute to handle time-based changes
+        setInterval(() => {
+            if (currentKhutbahData) {
+                updateKhutbahDisplay(currentKhutbahData);
+            }
+        }, 60000); // Update every minute
+    });</script>
 
 </html>
