@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Al-Haramin Masjid</title>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -40,40 +40,29 @@
             <!-- Sidebar -->
             <aside class="sidebar">
                 <div class="sidebar-card Khutbah-card" id="khutbah-card">
-                    <h2 class="title"><i class="fas fa-microphone"></i>Jumu'ah Khutbah</h2>
-                    <h3 id="khutbah-title">The Importance of Community</h3>
-                    <h4 class="in-short" id="khutbah-summary">In these challenging times, building a strong Muslim
-                        community is more
-                        important than ever. We must support each other, share knowledge, and work together to
-                        strengthen our faith and serve
-                        Allah SWT.</h4>
-                    <h5 class="speaker" id="khutbah-speaker">-Imam Mohammed Bafuleh</h5>
-                </div>
-
-                <!-- QR Code Section -->
-                <div class="sidebar-card" id="qrcode-card">
-                    <div class="qr-title"><i class="fas fa-hands-helping"></i> Helping QR code</div>
-                    <div class="qr-code">
-                        <img id="qrcode-image" src="" alt="QR Code" style="max-width: 100%;">
-                    </div>
-                    <div class="qr-description" id="qrcode-description"></div>
+                    <h2 class="title"><i class="fas fa-microphone"></i></h2>
+                    <h3 id="khutbah-title"></h3>
+                    <h4 class="in-short" id="khutbah-summary"></h4>
+                    <h5 class="speaker" id="khutbah-speaker"></h5>
                 </div>
 
                 <!-- News section moved to sidebar -->
                 <div class="sidebar-card news-card">
                     <div class="news-title"><i class="fas fa-newspaper"></i>News of the Week</div>
                     <div class="news-content">
-                        <div class="news-item">
-                            Community Iftar will be held this Saturday after Maghrib prayer
+                        <div class="news-item"></div>
+                    </div>
+                </div>
+
+                <!-- QR Code Section -->
+                <div class="sidebar-card" id="qrcode-card">
+                    <div class="qr-container">
+                        <div class="qr-image-container">
+                            <img class="payment-method" src="thai-payment.png" alt="Payment Methods">
+                            <img id="qrcode-image" src="" alt="QR Code">
                         </div>
-                        <div class="news-item">
-                            Quran classes for children will resume next week
-                        </div>
-                        <div class="news-item">
-                            Donation for Yemen Terrorist Atack victims
-                        </div>
-                        <div class="news-item">
-                            New library section with Islamic books now open
+                        <div class="qr-text-container">
+                            <div class="qr-description" id="qrcode-description"></div>
                         </div>
                     </div>
                 </div>
