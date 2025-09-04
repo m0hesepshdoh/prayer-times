@@ -14,22 +14,25 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 html,
 body {
     overflow: hidden;
-    width: 100%;
     height: 100%;
+    width: 100%;
+}
+
+body {
+    background: var(--black);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: var(--white);
     line-height: 1.6;
-    background: var(--black);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2vw;
+    /* Responsive base font size */
 }
 
 .container {
@@ -45,25 +48,28 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
-    padding: 10px 15px;
+    padding: 1vh 1.5vw;
     background: linear-gradient(135deg, var(--green), var(--dark-green), var(--black));
-    border-bottom: 2px solid var(--gold);
-    min-height: 70px;
+    border-bottom: 0.3vh solid var(--gold);
+    flex-shrink: 0;
+    min-height: 12vh;
+    /* Minimum header height */
 }
 
 .brand {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 1.5vw;
 }
 
 .logo {
-    width: 50px;
-    height: 50px;
+    width: 8vh;
+    height: 8vh;
     object-fit: contain;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--white);
 }
 
 .brand-text {
@@ -73,7 +79,8 @@ body {
 .brand-line1 {
     font-weight: 700;
     color: var(--white);
-    font-size: 18px;
+    font-size: 3.2vh;
+    /* Responsive font size */
 }
 
 .clock-container {
@@ -84,17 +91,19 @@ body {
 }
 
 .clock {
-    font-size: 22px;
+    font-size: 4.2vh;
+    /* Responsive font size */
     font-weight: 800;
     color: var(--white);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 0.3vh 0.3vh 0.6vh rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 1vw;
 }
 
 .day-display {
-    font-size: 14px;
+    font-size: 2.2vh;
+    /* Responsive font size */
     color: var(--gold);
     font-weight: 700;
 }
@@ -104,13 +113,15 @@ body {
 }
 
 .gregorian {
-    font-size: 14px;
+    font-size: 1.8vh;
+    /* Responsive font size */
     font-weight: 700;
     color: var(--white);
 }
 
 .hijri {
-    font-size: 12px;
+    font-size: 1.5vh;
+    /* Responsive font size */
     color: var(--muted);
 }
 
@@ -120,26 +131,28 @@ body {
     display: grid;
     grid-template-columns: 35% 65%;
     overflow: hidden;
-    height: calc(100vh - 70px);
+    height: calc(100vh - 12vh);
+    /* Adjust based on header height */
 }
 
 /* Sidebar */
 .sidebar {
     background: var(--sidebar-bg);
     color: var(--black);
-    padding: 10px 15px;
+    padding: 1.5vh 1.5vw;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1.5vh;
     overflow: hidden;
 }
 
 /* Enhanced sidebar cards */
 .sidebar-card {
-    border-radius: 10px;
-    padding: 10px 15px;
+    border-radius: 2vh;
+    padding: 1.5vh 1.5vw;
     flex-shrink: 1;
     min-height: 0;
+    /* Allow cards to shrink */
 }
 
 /* Enhanced Khutbah card styling */
@@ -149,49 +162,60 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    min-height: 120px;
-    padding: 12px 15px;
+    min-height: 20vh;
+    padding: 2vh 1.5vw;
+    /* Slightly increased padding */
 }
 
 .Khutbah-card h2 {
-    font-size: 16px;
-    margin-bottom: 8px;
+    font-size: 2.2vh;
+    /* Increased from 1.8vh */
+    margin-bottom: 1.5vh;
+    /* Added more space below title */
     display: flex;
     align-items: center;
-    gap: 6px;
-    min-height: 20px;
+    gap: 0.8vw;
+    min-height: 2.5vh;
 }
 
 .Khutbah-card h3 {
-    margin-bottom: 8px;
+    margin-bottom: 1.2vh;
+    /* Increased from 0.8vh */
     font-weight: 700;
-    font-size: 15px;
-    min-height: 18px;
+    font-size: 2vh;
+    /* Increased from 1.6vh */
+    min-height: 2vh;
 }
 
 .Khutbah-card h4 {
-    font-size: 14px;
+    font-size: 1.7vh;
+    /* Increased from 1.4vh */
     font-weight: normal;
     line-height: 1.6;
+    /* Increased from 1.5 */
     flex: 1;
     overflow: auto;
-    margin-bottom: 8px;
-    min-height: 30px;
+    margin-bottom: 1.5vh;
+    /* Increased from 1vh */
+    min-height: 4vh;
 }
 
 .Khutbah-card h5 {
     opacity: 0.9;
-    font-size: 14px;
-    min-height: 18px;
-    margin-top: 8px;
+    font-size: 1.8vh;
+    /* Increased from 1.6vh */
+    min-height: 2vh;
+    margin-top: 1.5vh;
+    /* Added space above speaker */
 }
 
 .notice {
     background: linear-gradient(135deg, var(--red), #c93a37);
     color: var(--white);
-    font-size: 14px;
+    font-size: 1.6vh;
+    /* Responsive font size */
     text-align: center;
-    padding: 8px;
+    padding: 1.2vh;
 }
 
 .news-card {
@@ -201,38 +225,79 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 0;
+    /* Allow card to shrink */
 }
 
-.news-title {
-    color: var(--green);
-    font-size: 16px;
+.news-item-input {
+    margin-bottom: 1vh;
+}
+
+.sidebar-card h2 {
+    font-size: 7vh;
     font-weight: 800;
-    margin-bottom: 8px;
+    /* Responsive font size */
+    margin-bottom: 1vh;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 0.8vw;
+}
+
+.sidebar-card h3 {
+    margin-bottom: 0.8vh;
+    font-weight: 700;
+    font-size: 4vh;
+    /* Responsive font size */
+}
+
+.sidebar-card h4 {
+    font-size: 3vh;
+    /* Responsive font size */
+    font-weight: normal;
+    line-height: 1.5;
+    flex: 1;
+    overflow: hidden;
+}
+
+.speaker {
+    font-size: 1.6vh;
+    /* Responsive font size */
+    margin-top: 90vh;
+}
+
+/* News section in sidebar */
+.news-title {
+    color: var(--green);
+    font-size: 5vh;
+    font-weight: 800;
+    /* Responsive font size */
+    margin-bottom: 1.2vh;
+    display: flex;
+    align-items: center;
+    gap: 0.8vw;
 }
 
 .news-content {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 1vh;
     flex: 1;
     overflow: auto;
+    /* Allow scrolling if needed */
 }
 
 .news-item {
-    padding: 8px;
+    padding: 1vh;
     background: rgba(31, 90, 69, 0.08);
-    border-radius: 5px;
+    border-radius: 0.8vh;
     transition: background-color 0.3s ease;
-    font-size: 14px;
+    font-size: 4vh;
+    /* Responsive font size */
 }
 
 /* Prayer times */
 .prayer-times {
     background: linear-gradient(135deg, var(--green), var(--dark-green));
-    padding: 10px 15px;
+    padding: 1.5vh 1.5vw;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -241,11 +306,12 @@ body {
 .prayer-header {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr;
-    padding-bottom: 8px;
-    margin-bottom: 8px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 1.2vh;
+    margin-bottom: 1.2vh;
+    border-bottom: 0.2vh solid rgba(255, 255, 255, 0.2);
     font-weight: 700;
-    font-size: 14px;
+    font-size: 1.8vh;
+    /* Responsive font size */
     flex-shrink: 0;
 }
 
@@ -272,72 +338,78 @@ body {
 .prayer-row {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr;
-    padding: 8px 0;
+    padding: 1.2vh 0;
     align-items: center;
     transition: background-color 0.3s ease;
     flex-shrink: 0;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(155, 106, 39, 0.1));
-    border-radius: 10px;
-    margin: 2px 0;
+    border-radius: 2vh;
+    margin: 0.2vh 0;
 }
 
 .prayer-name {
-    font-size: 16px;
+    font-size: 3vh;
+    /* Responsive font size */
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 1vw;
 }
 
 .prayer-icon {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 12px;
+    font-size: 1.2vh;
+    /* Responsive font size */
 }
 
 .prayer-begins {
     text-align: center;
-    font-size: 18px;
+    font-size: 3.7vh;
+    /* Responsive font size */
     font-weight: 800;
     color: var(--white);
 }
 
 .prayer-jamaat {
     text-align: right;
-    font-size: 18px;
+    font-size: 3.7vh;
+    /* Responsive font size */
     color: var(--white);
 }
 
-/* Additional prayers section */
+/* Additional prayers section - now side by side */
 .additional-prayers {
-    margin-top: 10px;
-    padding-top: 10px;
-    border-top: 2px dashed rgba(255, 255, 255, 0.3);
+    margin-top: 1.5vh;
+    padding-top: 1.5vh;
+    border-top: 0.3vh dashed rgba(255, 255, 255, 0.3);
     flex-shrink: 0;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 8px;
+    gap: 1vh;
 }
 
 .additional-prayer-row {
     display: flex;
     justify-content: space-between;
-    padding: 8px;
+    padding: 1vh;
     opacity: 0.9;
     transition: opacity 0.3s ease;
     background: #ffffff1a;
-    border-radius: 5px;
+    border-radius: 0.8vh;
 }
 
 .additional-prayer-name {
-    font-size: 12px;
+    font-size: 1.5vh;
+    /* Responsive font size */
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 0.8vw;
 }
 
 .additional-prayer-time {
-    font-size: 12px;
+    font-size: 1.5vh;
+    /* Responsive font size */
 }
 
 /* QR Code Container */
@@ -348,12 +420,13 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 0;
+    /* Allow card to shrink */
 }
 
 .qr-container {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 0.1vw;
     height: 100%;
 }
 
@@ -366,24 +439,24 @@ body {
 }
 
 .payment-method {
-    max-width: 80px;
-    margin-bottom: 5px;
+    max-width: 15vh;
+    margin-bottom: 0.5vh;
 }
 
 #qrcode-image {
-    max-width: 70px;
-    max-height: 70px;
+    max-width: 12vh;
+    max-height: 12vh;
 }
 
 .qr-text-container {
     flex: 1;
     display: flex;
     align-items: center;
-    padding-top: 5px;
+    padding-top: 0.5vh;
 }
 
 .qr-description {
-    font-size: 14px;
+    font-size: 4.5vh;
     color: var(--gold);
     line-height: 1.4;
     word-wrap: break-word;
@@ -395,14 +468,15 @@ body {
 /* Footer */
 .footer {
     background: var(--dark-green);
-    padding: 2px;
-    border-top: 1px solid var(--gold);
+    padding: 0.2vh;
+    border-top: 0.2vh solid var(--gold);
     text-align: center;
     flex-shrink: 0;
 }
 
 .footer-text {
-    font-size: 10px;
+    font-size: 0.9vh;
+    /* Responsive font size */
     color: #3c763c;
 }
 
