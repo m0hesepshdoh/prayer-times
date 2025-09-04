@@ -309,17 +309,16 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchData();
 
     // Set up real-time listener for data changes
-    db.collection("mosqueSettings").doc("currentSettings")
-        .onSnapshot(doc => {
+    async function loadKhutbah() {
+        try {
+            const doc = await db.collection("khutbah").doc("latest").get();
             if (doc.exists) {
-                fetchData();
+                document.getElementById("khutbah-title").textContent = doc.data().title;
             }
-        });
-
-    // Also update Khutbah display every minute to handle time-based changes
-    setInterval(() => {
-        if (currentKhutbahData) {
-            updateKhutbahDisplay(currentKhutbahData);
+        } catch (e) {
+            console.error("Error:", e);
         }
-    }, 60000); // Update every minute
+    }
+    setInterval(loadKhutbah, 60000); // refresh every minute
+    loadKhutbah();
 });
