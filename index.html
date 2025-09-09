@@ -43,7 +43,6 @@
             display: flex;
             flex-direction: column;
             font-size: 1.2vw;
-            /* Responsive base font size */
         }
 
         .container {
@@ -91,7 +90,6 @@
             font-weight: 700;
             color: var(--white);
             font-size: 3.2vh;
-            /* Responsive font size */
         }
 
         .clock-container {
@@ -103,7 +101,6 @@
 
         .clock {
             font-size: 4.2vh;
-            /* Responsive font size */
             font-weight: 800;
             color: var(--white);
             text-shadow: 0.3vh 0.3vh 0.6vh rgba(0, 0, 0, 0.5);
@@ -113,8 +110,7 @@
         }
 
         .day-display {
-            font-size: 2.2vh;
-            /* Responsive font size */
+            font-size: 4vh;
             color: var(--gold);
             font-weight: 700;
         }
@@ -124,15 +120,13 @@
         }
 
         .gregorian {
-            font-size: 1.8vh;
-            /* Responsive font size */
+            font-size: 2vh;
             font-weight: 700;
             color: var(--white);
         }
 
         .hijri {
-            font-size: 1.5vh;
-            /* Responsive font size */
+            font-size: 1.8vh;
             color: var(--muted);
         }
 
@@ -150,81 +144,68 @@
         .sidebar {
             background: var(--sidebar-bg);
             color: var(--black);
-            padding: 1.5vh 1.5vw;
+            padding: 1vh 1vw;
             display: flex;
             flex-direction: column;
-            gap: 1.5vh;
+            gap: 1vh;
             overflow: hidden;
         }
 
-        /* Enhanced sidebar cards */
         .sidebar-card {
             border-radius: 2vh;
             padding: 1.5vh 1.5vw;
             flex-shrink: 1;
             min-height: 0;
-            /* Allow cards to shrink */
         }
 
-        /* Enhanced Khutbah card styling */
         .Khutbah-card {
             background: linear-gradient(135deg, var(--gold), #b8792f);
             color: var(--white);
-            flex: 1;
+            flex: 2;
             display: flex;
             flex-direction: column;
-            min-height: 20vh;
+            min-height: 25vh;
             padding: 2vh 1.5vw;
-            /* Slightly increased padding */
         }
 
         .Khutbah-card h2 {
-            font-size: 2.2vh;
-            /* Increased from 1.8vh */
+            font-size: 3vh;
+            font-weight: 600;
             margin-bottom: 1.5vh;
-            /* Added more space below title */
             display: flex;
             align-items: center;
             gap: 0.8vw;
-            min-height: 2.5vh;
+            min-height: 2vh;
         }
 
         .Khutbah-card h3 {
             margin-bottom: 1.2vh;
-            /* Increased from 0.8vh */
-            font-weight: 700;
-            font-size: 2vh;
-            /* Increased from 1.6vh */
-            min-height: 2vh;
+            font-weight: 500;
+            font-size: 3.4vh;
+            min-height: 3vh;
         }
 
         .Khutbah-card h4 {
-            font-size: 1.7vh;
-            /* Increased from 1.4vh */
-            font-weight: normal;
+            font-size: 2.2vh;
+            font-weight: 200;
             line-height: 1.6;
-            /* Increased from 1.5 */
             flex: 1;
             overflow: auto;
             margin-bottom: 1.5vh;
-            /* Increased from 1vh */
-            min-height: 4vh;
+            min-height: 8vh;
         }
 
         .Khutbah-card h5 {
-            opacity: 0.9;
-            font-size: 1.8vh;
-            /* Increased from 1.6vh */
-            min-height: 2vh;
-            margin-top: 1.5vh;
-            /* Added space above speaker */
+            font-size: 2.2vh;
+            font-weight: 100;
+            min-height: 3vh;
+            margin-bottom: 0.5vh;
         }
 
         .notice {
             background: linear-gradient(135deg, var(--red), #c93a37);
             color: var(--white);
             font-size: 1.6vh;
-            /* Responsive font size */
             text-align: center;
             padding: 1.2vh;
         }
@@ -236,51 +217,16 @@
             display: flex;
             flex-direction: column;
             min-height: 0;
-            /* Allow card to shrink */
         }
 
         .news-item-input {
             margin-bottom: 1vh;
         }
 
-        .sidebar-card h2 {
-            font-size: 7vh;
-            font-weight: 800;
-            /* Responsive font size */
-            margin-bottom: 1vh;
-            display: flex;
-            align-items: center;
-            gap: 0.8vw;
-        }
-
-        .sidebar-card h3 {
-            margin-bottom: 0.8vh;
-            font-weight: 700;
-            font-size: 4vh;
-            /* Responsive font size */
-        }
-
-        .sidebar-card h4 {
-            font-size: 3vh;
-            /* Responsive font size */
-            font-weight: normal;
-            line-height: 1.5;
-            flex: 1;
-            overflow: hidden;
-        }
-
-        .speaker {
-            font-size: 1.6vh;
-            /* Responsive font size */
-            margin-top: 90vh;
-        }
-
-        /* News section in sidebar */
         .news-title {
             color: var(--green);
-            font-size: 5vh;
-            font-weight: 800;
-            /* Responsive font size */
+            font-size: 3vh;
+            font-weight: 600;
             margin-bottom: 1.2vh;
             display: flex;
             align-items: center;
@@ -292,20 +238,107 @@
             flex-direction: column;
             gap: 1vh;
             flex: 1;
-            overflow: auto;
-            /* Allow scrolling if needed */
+            overflow: hidden;
         }
 
         .news-item {
-            padding: 1vh;
+            padding: 0.7vh;
             background: rgba(31, 90, 69, 0.08);
             border-radius: 0.8vh;
             transition: background-color 0.3s ease;
-            font-size: 4vh;
-            /* Responsive font size */
+            font-size: 2vh;
         }
 
-        /* Prayer times */
+        #qrcode-card {
+            background: var(--white);
+            color: var(--black);
+            flex: 0.8;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            padding: 1vh 1vw;
+        }
+
+        .qr-container {
+            display: flex;
+            align-items: center;
+            gap: 0.1vw;
+            height: 100%;
+        }
+
+        .qr-image-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .payment-method {
+            max-width: 10vh;
+            margin-bottom: 0.2vh;
+        }
+
+        #qrcode-image {
+            max-width: 9vh;
+            max-height: 9vh;
+        }
+
+        .qr-text-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+
+        .qr-description {
+            font-size: 2.5vh;
+            color: var(--gold);
+            line-height: 3vh;
+            word-wrap: break-word;
+            max-height: 100%;
+            overflow: auto;
+            text-align: left;
+            margin-left: 1.7vh;
+        }
+
+        .footer {
+            background: var(--dark-green);
+            padding: 0.2vh;
+            border-top: 0.2vh solid var(--gold);
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .footer-text {
+            font-size: 0.9vh;
+            color: #3c763c;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Prevent text overflow */
+        .prayer-name,
+        .prayer-begins,
+        .prayer-jamaat,
+        .brand-line1,
+        .clock,
+        .date,
+        .Khutbah-card h2,
+        .Khutbah-card h3,
+        .Khutbah-card h4,
+        .Khutbah-card h5 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .Khutbah-card h4,
+        .news-item {
+            white-space: normal;
+            word-wrap: break-word;
+        }
+
         .prayer-times {
             background: linear-gradient(135deg, var(--green), var(--dark-green));
             padding: 1.5vh 1.5vw;
@@ -322,7 +355,6 @@
             border-bottom: 0.2vh solid rgba(255, 255, 255, 0.2);
             font-weight: 700;
             font-size: 1.8vh;
-            /* Responsive font size */
             flex-shrink: 0;
         }
 
@@ -360,7 +392,6 @@
 
         .prayer-name {
             font-size: 3vh;
-            /* Responsive font size */
             display: flex;
             align-items: center;
             gap: 1vw;
@@ -370,13 +401,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* Responsive font size */
         }
 
         .prayer-begins {
             text-align: center;
             font-size: 3.7vh;
-            /* Responsive font size */
             font-weight: 800;
             color: var(--white);
         }
@@ -384,11 +413,9 @@
         .prayer-jamaat {
             text-align: right;
             font-size: 3.7vh;
-            /* Responsive font size */
             color: var(--white);
         }
 
-        /* Additional prayers section - now side by side */
         .additional-prayers {
             margin-top: 1.5vh;
             padding-top: 1.5vh;
@@ -411,7 +438,6 @@
 
         .additional-prayer-name {
             font-size: 1.5vh;
-            /* Responsive font size */
             display: flex;
             align-items: center;
             gap: 0.8vw;
@@ -419,102 +445,6 @@
 
         .additional-prayer-time {
             font-size: 1.5vh;
-            /* Responsive font size */
-        }
-
-        /* QR Code Container */
-        #qrcode-card {
-            background: var(--white);
-            color: var(--black);
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            min-height: 0;
-            /* Allow card to shrink */
-        }
-
-        .qr-container {
-            display: flex;
-            align-items: center;
-            gap: 0.1vw;
-            height: 100%;
-        }
-
-        /* QR Image Container */
-        .qr-image-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex-shrink: 0;
-        }
-
-        .payment-method {
-            max-width: 15vh;
-            margin-bottom: 0.5vh;
-        }
-
-        #qrcode-image {
-            max-width: 12vh;
-            max-height: 12vh;
-        }
-
-        .qr-text-container {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            padding-top: 0.5vh;
-        }
-
-        .qr-description {
-            font-size: 4.5vh;
-            color: var(--gold);
-            line-height: 1.4;
-            word-wrap: break-word;
-            max-height: 100%;
-            overflow: auto;
-            text-align: left;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--dark-green);
-            padding: 0.2vh;
-            border-top: 0.2vh solid var(--gold);
-            text-align: center;
-            flex-shrink: 0;
-        }
-
-        .footer-text {
-            font-size: 0.9vh;
-            /* Responsive font size */
-            color: #3c763c;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* Prevent text overflow */
-        .prayer-name,
-        .prayer-begins,
-        .prayer-jamaat,
-        .brand-line1,
-        .clock,
-        .date,
-        .Khutbah-card h2,
-        .Khutbah-card h3,
-        .Khutbah-card h4,
-        .Khutbah-card h5 {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        /* Allow text wrapping in specific elements */
-        .Khutbah-card h4,
-        .news-item {
-            white-space: normal;
-            word-wrap: break-word;
         }
     </style>
 </head>
