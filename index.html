@@ -878,7 +878,7 @@
                             if (data.qrcode.enabled) {
                                 qrcodeCard.classList.remove('hidden');
                                 if (data.qrcode.text) {
-                                    qrcodeImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(data.qrcode.text)}`;
+                                    qrcodeImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(data.qrcode.text)}`;
                                 }
                                 if (data.qrcode.description) qrcodeDescription.textContent = data.qrcode.description;
                             } else {
